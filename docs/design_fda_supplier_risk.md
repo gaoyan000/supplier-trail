@@ -110,6 +110,7 @@ Red-list firms (name + address only)
         ├─ step 1: exact name match → refusal records ....... 24/30 resolved (80%), 0 ambiguous
         ├─ step 2: normalized name + country fuzzy match .... (to build; target ≥90% total)
         ├─ step 3: FEI API lookup by name + address ......... (once key granted)
+        ├─ step 4: human check on FDA's firm profile ......... evidence for `verified` (§10); confirmed 2026-10-09
         └─ unresolved → firm page without FEI, slug = name-country, noindex until resolved
 ```
 
@@ -282,7 +283,7 @@ Other screens: home/search, import-alert page, country/industry list, watchlist 
 2. ✅ **Done 2026-10-07.** Checked every source in §2: access, fields and FEI presence. 17/18 tests pass; samples are in `spike/samples/`. The FEI API key is pending with FDA (non-blocking).
 3. ✅ **Done 2026-10-07.** 100 keywords → `research/keywords_100.csv` (50 P1). Still to do: volume check via Keyword Planner.
 4. ✅ **Done 2026-10-07.** Read 21 CFR 1.505, 1.510, 1.511 and 1.512; claims confirmed with the corrections noted in §1 → `research/week0_findings.md` §1.
-6. Find FDA FSER's import-alert↔FEI linkage (browser network inspection of a firm profile). If it's reachable, it replaces most name matching and yields "verified" links under §10.
+6. ✅ **Done 2026-10-09.** FDA's firm profile (`datadashboard.fda.gov/oii/firmprofile.htm?FEIi=<FEI>`) lists **current import alerts per FEI**. Test: FEI 3015850818 shows Import Alert 99-19, published 08/24/2022, the same name, address and date as our scraped red-list entry, confirming that exact-name match. Data is served from FDA's **internal** Qlik backend (`/internal/...`), so we **do not automate** against it. We use the profile page as the evidence for human verification (§10 Rule 1) and asked FDA whether the Data Dashboard API can expose import alerts by FEI.
 5. Talk to 5 FSVP importers (spice/seafood importers, Amazon supplement sellers via forums or LinkedIn). Ask how they check suppliers today and whether they'd pay $29/mo. → verify: 5 call notes; ≥2 say yes
 
 **Week 1: data**
@@ -357,7 +358,9 @@ Realistic plaintiffs are **US importers and distributors** (in recalls and warni
 `verified` requires one of:
 - the FEI appears in FDA's own text for that entry,
 - the FEI API returns that FEI for FDA's name + address, or
-- exact normalized name + same country + address similarity ≥ threshold **and** human review.
+- exact normalized name + same country + address similarity ≥ threshold **and** human review, where the reviewer opens FDA's firm profile for the candidate FEI and confirms it lists **the same import alert number** (FDA's page is the saved evidence: store the URL, check date and reviewer in `firm_aliases.verified_by/verified_at`).
+
+Not allowed: calling FDA's internal endpoints (`/internal/token`, `/internal/firmdata`, the Qlik engine) from our code. They are undocumented, labelled internal, and would undercut the good-faith posture this section depends on.
 
 Human review is cheap at our scale: about 1,200 entries on the largest alert, and most firms appear on few alerts.
 

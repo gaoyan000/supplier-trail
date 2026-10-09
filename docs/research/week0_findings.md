@@ -53,7 +53,11 @@ Raw text is saved in `cfr_1.5xx.txt`.
 | Apify "FDA Import Alert & Supplier Ban Monitor", ArgusHQ MCP | Developer tools / scrapers with risk scores | 🟢 Low (dev audience) | Evidence the data is reachable; also a reminder of the risk-score legal issue |
 | Consultants (Certified Labs, Diaz Trade Law, Registrar services) | Removal petitions, FSVP consulting | Partners, not competitors | **Lead-gen buyers** |
 
-### Follow-up
+### Follow-up — ✅ resolved 2026-10-09
+
+**Result:** FDA's firm profile lists current import alerts by FEI (FEI 3015850818 → Import Alert 99-19, 08/24/2022, matching our scraped entry exactly). It is served by FDA's internal Qlik backend, so we use it for **manual verification only**, not automation. See design §8 task 6 and §10 Rule 1.
+
+Original note:
 
 FDA's FSER tool shows import alerts **per firm (with FEI)**. If the Dashboard exposes that linkage (firm profile pages or an undocumented dataset), it could replace most of our red-list name matching *and* make links "verified" under the §10 legal rule. Endpoint guesses (`import_alerts`, etc.) returned 404. **Next step:** inspect a firm-profile page's network calls in a browser for a known red-listed FEI (e.g. 3013266062).
 
