@@ -1,0 +1,177 @@
+[
+  {
+    "INDID": "28",
+    "PRODID": 177724,
+    "PRODDESC": "Bombu (Indonesian combination of spices and seasonings), dry without salt",
+    "CLASSCODE": "F",
+    "GROUPCODE": "05"
+  },
+  {
+    "INDID": "28",
+    "PRODID": 177727,
+    "PRODDESC": "Bombu (Indonesian combination of spices and seasonings), liquid with salt",
+    "CLASSCODE": "L",
+    "GROUPCODE": "06"
+  },
+  {
+    "INDID": "28",
+    "PRODID": 172384,
+    "PRODDESC": "Mango (spice)",
+    "CLASSCODE": "A",
+    "GROUPCODE": "64"
+  },
+  {
+    "INDID": "28",
+    "PRODID": 173311,
+    "PRODDESC": "Sweet Marjoram, Whole (Spice)",
+    "CLASSCODE": "A",
+    "GROUPCODE": "27"
+  },
+  {
+    "INDID": "28",
+    "PRODID": 173312,
+    "PRODDESC": "Oregano, Whole (Spice)",
+    "CLASSCODE": "A",
+    "GROUPCODE": "90"
+  },
+  {
+    "INDID": "28",
+    "PRODID": 173313,
+    "PRODDESC": "Sweet Majoram, Ground, Cracked (Spice)",
+    "CLASSCODE": "B",
+    "GROUPCODE": "27"
+  },
+  {
+    "INDID": "28",
+    "PRODID": 173314,
+    "PRODDESC": "Oregano, Ground, Cracked (Spice)",
+    "CLASSCODE": "B",
+    "GROUPCODE": "90"
+  },
+  {
+    "INDID": "28",
+    "PRODID": 169865,
+    "PRODDESC": "Newspice",
+    "CLASSCODE": "C",
+    "GROUPCODE": "01"
+  },
+  {
+    "INDID": "28",
+    "PRODID": 173315,
+    "PRODDESC": "Oregano, Natural Extract or Flavor (Spice)",
+    "CLASSCODE": "C",
+    "GROUPCODE": "90"
+  },
+  {
+    "INDID": "28",
+    "PRODID": 173316,
+    "PRODDESC": "Sweet Majoram, Natural Extract or Flavor (Spice)",
+    "CLASSCODE": "C",
+    "GROUPCODE": "27"
+  },
+  {
+    "INDID": "37",
+    "PRODID": 25621,
+    "PRODDESC": "Sambal Bajak (Asian and Indian multi-purpose condiment paste; hot chili peppers, spices, lime juice)",
+    "CLASSCODE": "K",
+    "GROUPCODE": "99"
+  },
+  {
+    "INDID": "28",
+    "PRODID": 25627,
+    "PRODDESC": "Sansho (Japanese pepper (dried berry of prickly ash) used as spice in cooking)",
+    "CLASSCODE": "B",
+    "GROUPCODE": "99"
+  },
+  {
+    "INDID": "28",
+    "PRODID": 25631,
+    "PRODDESC": "Saunf (Indian name for the spice fennel)",
+    "CLASSCODE": "A",
+    "GROUPCODE": "18"
+  },
+  {
+    "INDID": "28",
+    "PRODID": 150424,
+    "PRODDESC": "Cilantro, Whole (Spice)",
+    "CLASSCODE": "A",
+    "GROUPCODE": "15"
+  },
+  {
+    "INDID": "28",
+    "PRODID": 150425,
+    "PRODDESC": "Cilantro, Ground, Cracked  (Spice)",
+    "CLASSCODE": "B",
+    "GROUPCODE": "15"
+  },
+  {
+    "INDID": "28",
+    "PRODID": 150426,
+    "PRODDESC": "Cilantro, Natural Extract or Flavor (Spice)",
+    "CLASSCODE": "C",
+    "GROUPCODE": "15"
+  },
+  {
+    "INDID": "07",
+    "PRODID": 25774,
+    "PRODDESC": "Krupak (dried, mildly spiced wafers made of shrimp & tapioca flour, served w/Indonesian dishes)",
+    "CLASSCODE": "B",
+    "GROUPCODE": "08"
+  },
+  {
+    "INDID": "03",
+    "PRODID": 25784,
+    "PRODDESC": "Lambropsomo (Greek Easter breat made w/an added liquid spice mixture of cloves bay leaves & cinnamon",
+    "CLASSCODE": "A",
+    "GROUPCODE": "99"
+  },
+  {
+    "INDID": "28",
+    "PRODID": 25788,
+    "PRODDESC": "Laung (Indian term for clove; used extensively as a spice in pilaf & in braised dishes)",
+    "CLASSCODE": "A",
+    "GROUPCODE": "14"
+  },
+  {
+    "INDID": "52",
+    "PRODID": 177442,
+    "PRODDESC": "Spice-lined Casings, non-edible (Food Related)",
+    "CLASSCODE": "B",
+    "GROUPCODE": "08"
+  },
+  {
+    "INDID": "28",
+    "PRODID": 177536,
+    "PRODDESC": "Lavender (Spice)",
+    "CLASSCODE": "A",
+    "GROUPCODE": "91"
+  },
+  {
+    "INDID": "28",
+    "PRODID": 177537,
+    "PRODDESC": "Lavender, Ground, Cracked (Spice)",
+    "CLASSCODE": "B",
+    "GROUPCODE": "91"
+  },
+  {
+    "INDID": "28",
+    "PRODID": 177538,
+    "PRODDESC": "Lavender, Natural Extract or Flavor (Spice)",
+    "CLASSCODE": "C",
+    "GROUPCODE": "91"
+  },
+  {
+    "INDID": "28",
+    "PRODID": 25659,
+    "PRODDESC": "Jangkap (Indonesian combination spice or 'root seasonings' such as laos, kencur, ginger & lemongrass",
+    "CLASSCODE": "F",
+    "GROUPCODE": "99"
+  },
+  {
+    "INDID": "20",
+    "PRODID": 25529,
+    "PRODDESC": "Garam Nimboo Achar (Indian pickled and spiced lime in oil)",
+    "CLASSCODE": "G",
+    "GROUPCODE": "05"
+  }
+]

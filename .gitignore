@@ -1,0 +1,17 @@
+# secrets
+.env
+.env.*
+!.env.example
+
+# python
+.venv/
+__pycache__/
+.pytest_cache/
+
+# node / web
+node_modules/
+.next/
+.wrangler/
+
+# os
+.DS_Store

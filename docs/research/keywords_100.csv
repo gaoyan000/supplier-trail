@@ -1,0 +1,101 @@
+keyword,cluster,intent,target_page,priority,serp_note
+dasenlin food co ltd fda,firm,navigational/commercial,/supplier/{fei} or /import-alert/{n}/{entry},P1,SERP weak: no page for this exact firm; nearest = globalkeysolutions/regdatalab lookalikes or news
+bikanervala foods fda import refusal,firm,navigational/commercial,/supplier/{fei} or /import-alert/{n}/{entry},P1,SERP weak: no page for this exact firm; nearest = globalkeysolutions/regdatalab lookalikes or news
+karma ayurveda fda import alert,firm,navigational/commercial,/supplier/{fei} or /import-alert/{n}/{entry},P1,SERP weak: no page for this exact firm; nearest = globalkeysolutions/regdatalab lookalikes or news
+mahashian di hatti fda refusal,firm,navigational/commercial,/supplier/{fei} or /import-alert/{n}/{entry},P1,SERP weak: no page for this exact firm; nearest = globalkeysolutions/regdatalab lookalikes or news
+oak k.k. corporation fda refusal,firm,navigational/commercial,/supplier/{fei} or /import-alert/{n}/{entry},P1,SERP weak: no page for this exact firm; nearest = globalkeysolutions/regdatalab lookalikes or news
+societe boudjebel fda,firm,navigational/commercial,/supplier/{fei} or /import-alert/{n}/{entry},P1,SERP weak: no page for this exact firm; nearest = globalkeysolutions/regdatalab lookalikes or news
+song tran import and export fda,firm,navigational/commercial,/supplier/{fei} or /import-alert/{n}/{entry},P1,SERP weak: no page for this exact firm; nearest = globalkeysolutions/regdatalab lookalikes or news
+silver star resources fda refusal,firm,navigational/commercial,/supplier/{fei} or /import-alert/{n}/{entry},P1,SERP weak: no page for this exact firm; nearest = globalkeysolutions/regdatalab lookalikes or news
+anhui xinong pharma fda import alert,firm,navigational/commercial,/supplier/{fei} or /import-alert/{n}/{entry},P1,SERP weak: no page for this exact firm; nearest = globalkeysolutions/regdatalab lookalikes or news
+baijiayan food fda,firm,navigational/commercial,/supplier/{fei} or /import-alert/{n}/{entry},P1,SERP weak: no page for this exact firm; nearest = globalkeysolutions/regdatalab lookalikes or news
+dalian huaying international trading fda,firm,navigational/commercial,/supplier/{fei} or /import-alert/{n}/{entry},P1,SERP weak: no page for this exact firm; nearest = globalkeysolutions/regdatalab lookalikes or news
+dalian xinglongken organic products fda,firm,navigational/commercial,/supplier/{fei} or /import-alert/{n}/{entry},P1,SERP weak: no page for this exact firm; nearest = globalkeysolutions/regdatalab lookalikes or news
+dongguan lingnan youpin trading fda,firm,navigational/commercial,/supplier/{fei} or /import-alert/{n}/{entry},P1,SERP weak: no page for this exact firm; nearest = globalkeysolutions/regdatalab lookalikes or news
+fujian shenglinmark trade fda,firm,navigational/commercial,/supplier/{fei} or /import-alert/{n}/{entry},P1,SERP weak: no page for this exact firm; nearest = globalkeysolutions/regdatalab lookalikes or news
+fuzhou golden banyan foodstuffs fda,firm,navigational/commercial,/supplier/{fei} or /import-alert/{n}/{entry},P1,SERP weak: no page for this exact firm; nearest = globalkeysolutions/regdatalab lookalikes or news
+tejas food industries fda import alert,firm,navigational/commercial,/supplier/{fei} or /import-alert/{n}/{entry},P1,SERP weak: no page for this exact firm; nearest = globalkeysolutions/regdatalab lookalikes or news
+ramdev food products fda refusal,firm,navigational/commercial,/supplier/{fei} or /import-alert/{n}/{entry},P1,SERP weak: no page for this exact firm; nearest = globalkeysolutions/regdatalab lookalikes or news
+everest spices fda refusal,firm,navigational/commercial,/supplier/{fei} or /import-alert/{n}/{entry},P1,SERP weak: no page for this exact firm; nearest = globalkeysolutions/regdatalab lookalikes or news
+mtr foods fda import refusal,firm,navigational/commercial,/supplier/{fei} or /import-alert/{n}/{entry},P1,SERP weak: no page for this exact firm; nearest = globalkeysolutions/regdatalab lookalikes or news
+hong kong tianbao food fda import alert,firm,navigational/commercial,/supplier/{fei} or /import-alert/{n}/{entry},P1,SERP weak: no page for this exact firm; nearest = globalkeysolutions/regdatalab lookalikes or news
+import alert 99-19,alert,informational,/import-alert/{n},P3,"FDA accessdata page ranks #1; positions 2-5 weak (JETRO PDFs, FDA country pages, news)"
+import alert 99-45,alert,informational,/import-alert/{n},P3,"FDA accessdata page ranks #1; positions 2-5 weak (JETRO PDFs, FDA country pages, news)"
+import alert 45-02,alert,informational,/import-alert/{n},P3,"FDA accessdata page ranks #1; positions 2-5 weak (JETRO PDFs, FDA country pages, news)"
+import alert 23-14,alert,informational,/import-alert/{n},P3,"FDA accessdata page ranks #1; positions 2-5 weak (JETRO PDFs, FDA country pages, news)"
+import alert 16-131,alert,informational,/import-alert/{n},P3,"FDA accessdata page ranks #1; positions 2-5 weak (JETRO PDFs, FDA country pages, news)"
+import alert 99-42,alert,informational,/import-alert/{n},P3,"FDA accessdata page ranks #1; positions 2-5 weak (JETRO PDFs, FDA country pages, news)"
+import alert 99-41,alert,informational,/import-alert/{n},P3,"FDA accessdata page ranks #1; positions 2-5 weak (JETRO PDFs, FDA country pages, news)"
+import alert 16-129,alert,informational,/import-alert/{n},P3,"FDA accessdata page ranks #1; positions 2-5 weak (JETRO PDFs, FDA country pages, news)"
+import alert 16-81,alert,informational,/import-alert/{n},P3,"FDA accessdata page ranks #1; positions 2-5 weak (JETRO PDFs, FDA country pages, news)"
+import alert 16-35,alert,informational,/import-alert/{n},P3,"FDA accessdata page ranks #1; positions 2-5 weak (JETRO PDFs, FDA country pages, news)"
+import alert 16-18,alert,informational,/import-alert/{n},P3,"FDA accessdata page ranks #1; positions 2-5 weak (JETRO PDFs, FDA country pages, news)"
+import alert 28-02,alert,informational,/import-alert/{n},P3,"FDA accessdata page ranks #1; positions 2-5 weak (JETRO PDFs, FDA country pages, news)"
+import alert 36-04,alert,informational,/import-alert/{n},P3,"FDA accessdata page ranks #1; positions 2-5 weak (JETRO PDFs, FDA country pages, news)"
+import alert 99-22,alert,informational,/import-alert/{n},P3,"FDA accessdata page ranks #1; positions 2-5 weak (JETRO PDFs, FDA country pages, news)"
+import alert 99-21,alert,informational,/import-alert/{n},P3,"FDA accessdata page ranks #1; positions 2-5 weak (JETRO PDFs, FDA country pages, news)"
+import alert 99-46,alert,informational,/import-alert/{n},P3,"FDA accessdata page ranks #1; positions 2-5 weak (JETRO PDFs, FDA country pages, news)"
+import alert 99-48,alert,informational,/import-alert/{n},P3,"FDA accessdata page ranks #1; positions 2-5 weak (JETRO PDFs, FDA country pages, news)"
+import alert 99-05,alert,informational,/import-alert/{n},P3,"FDA accessdata page ranks #1; positions 2-5 weak (JETRO PDFs, FDA country pages, news)"
+import alert 99-08,alert,informational,/import-alert/{n},P3,"FDA accessdata page ranks #1; positions 2-5 weak (JETRO PDFs, FDA country pages, news)"
+import alert 54-13,alert,informational,/import-alert/{n},P3,"FDA accessdata page ranks #1; positions 2-5 weak (JETRO PDFs, FDA country pages, news)"
+import alert 54-14,alert,informational,/import-alert/{n},P3,"FDA accessdata page ranks #1; positions 2-5 weak (JETRO PDFs, FDA country pages, news)"
+import alert 54-16,alert,informational,/import-alert/{n},P3,"FDA accessdata page ranks #1; positions 2-5 weak (JETRO PDFs, FDA country pages, news)"
+import alert 23-15,alert,informational,/import-alert/{n},P3,"FDA accessdata page ranks #1; positions 2-5 weak (JETRO PDFs, FDA country pages, news)"
+import alert 21-07,alert,informational,/import-alert/{n},P3,"FDA accessdata page ranks #1; positions 2-5 weak (JETRO PDFs, FDA country pages, news)"
+import alert 99-53,alert,informational,/import-alert/{n},P3,"FDA accessdata page ranks #1; positions 2-5 weak (JETRO PDFs, FDA country pages, news)"
+fda import alert india spices,country x category,informational,/country/{c}/{industry},P2,"News + STR trade blog posts; no structured, current lists"
+fda import refusals china dietary supplements,country x category,informational,/country/{c}/{industry},P2,"News + STR trade blog posts; no structured, current lists"
+fda red list mexico food,country x category,informational,/country/{c}/{industry},P2,"News + STR trade blog posts; no structured, current lists"
+fda import alert vietnam seafood,country x category,informational,/country/{c}/{industry},P2,"News + STR trade blog posts; no structured, current lists"
+fda import refusals india shrimp,country x category,informational,/country/{c}/{industry},P2,"News + STR trade blog posts; no structured, current lists"
+fda import alert turkey dried fruit,country x category,informational,/country/{c}/{industry},P2,"News + STR trade blog posts; no structured, current lists"
+fda import alert china honey,country x category,informational,/country/{c}/{industry},P2,"News + STR trade blog posts; no structured, current lists"
+fda import refusal thailand seafood,country x category,informational,/country/{c}/{industry},P2,"News + STR trade blog posts; no structured, current lists"
+fda import alert indonesia shrimp,country x category,informational,/country/{c}/{industry},P2,"News + STR trade blog posts; no structured, current lists"
+fda import refusals philippines food,country x category,informational,/country/{c}/{industry},P2,"News + STR trade blog posts; no structured, current lists"
+fda import alert pakistan spices,country x category,informational,/country/{c}/{industry},P2,"News + STR trade blog posts; no structured, current lists"
+fda import alert egypt food,country x category,informational,/country/{c}/{industry},P2,"News + STR trade blog posts; no structured, current lists"
+fda import alert syria food,country x category,informational,/country/{c}/{industry},P2,"News + STR trade blog posts; no structured, current lists"
+fda import refusals japan food,country x category,informational,/country/{c}/{industry},P2,"News + STR trade blog posts; no structured, current lists"
+fda import alert ecuador shrimp,country x category,informational,/country/{c}/{industry},P2,"News + STR trade blog posts; no structured, current lists"
+fda refusal salmonella spices,refusal reason,informational,/refusal-reason/{charge},P2,Mostly news and old ERS reports; little current data
+fda refusal unapproved new drug dietary supplement,refusal reason,informational,/refusal-reason/{charge},P2,Mostly news and old ERS reports; little current data
+fda refusal undeclared color additive,refusal reason,informational,/refusal-reason/{charge},P2,Mostly news and old ERS reports; little current data
+fda refusal pesticide residue,refusal reason,informational,/refusal-reason/{charge},P2,Mostly news and old ERS reports; little current data
+fda import refusal filthy,refusal reason,informational,/refusal-reason/{charge},P2,Mostly news and old ERS reports; little current data
+fda refusal aflatoxin mycotoxin,refusal reason,informational,/refusal-reason/{charge},P2,Mostly news and old ERS reports; little current data
+fda refusal lead heavy metals food,refusal reason,informational,/refusal-reason/{charge},P2,Mostly news and old ERS reports; little current data
+fda refusal nitrofurans shrimp,refusal reason,informational,/refusal-reason/{charge},P2,Mostly news and old ERS reports; little current data
+fda refusal misbranded labeling,refusal reason,informational,/refusal-reason/{charge},P2,Mostly news and old ERS reports; little current data
+fda refusal food facility not registered,refusal reason,informational,/refusal-reason/{charge},P2,Mostly news and old ERS reports; little current data
+fsvp supplier evaluation,FSVP,commercial/informational,/guides/fsvp-* + /pricing,P1,"Registrar Corp (ComplyHub) + fda.gov dominate; small sites (miratag, Fiverr) rank too, so winnable on long tail"
+fsvp supplier evaluation template,FSVP,commercial/informational,/guides/fsvp-* + /pricing,P1,"Registrar Corp (ComplyHub) + fda.gov dominate; small sites (miratag, Fiverr) rank too, so winnable on long tail"
+fsvp compliance history check,FSVP,commercial/informational,/guides/fsvp-* + /pricing,P1,"Registrar Corp (ComplyHub) + fda.gov dominate; small sites (miratag, Fiverr) rank too, so winnable on long tail"
+fsvp very small importer requirements,FSVP,commercial/informational,/guides/fsvp-* + /pricing,P1,"Registrar Corp (ComplyHub) + fda.gov dominate; small sites (miratag, Fiverr) rank too, so winnable on long tail"
+fsvp reevaluation new information,FSVP,commercial/informational,/guides/fsvp-* + /pricing,P1,"Registrar Corp (ComplyHub) + fda.gov dominate; small sites (miratag, Fiverr) rank too, so winnable on long tail"
+fsvp records requirements,FSVP,commercial/informational,/guides/fsvp-* + /pricing,P1,"Registrar Corp (ComplyHub) + fda.gov dominate; small sites (miratag, Fiverr) rank too, so winnable on long tail"
+fsvp dietary supplement importer,FSVP,commercial/informational,/guides/fsvp-* + /pricing,P1,"Registrar Corp (ComplyHub) + fda.gov dominate; small sites (miratag, Fiverr) rank too, so winnable on long tail"
+fsvp for amazon sellers,FSVP,commercial/informational,/guides/fsvp-* + /pricing,P1,"Registrar Corp (ComplyHub) + fda.gov dominate; small sites (miratag, Fiverr) rank too, so winnable on long tail"
+fsvp checklist,FSVP,commercial/informational,/guides/fsvp-* + /pricing,P1,"Registrar Corp (ComplyHub) + fda.gov dominate; small sites (miratag, Fiverr) rank too, so winnable on long tail"
+import alert 99-41 fsvp,FSVP,commercial/informational,/guides/fsvp-* + /pricing,P1,"Registrar Corp (ComplyHub) + fda.gov dominate; small sites (miratag, Fiverr) rank too, so winnable on long tail"
+fsvp warning letter,FSVP,commercial/informational,/guides/fsvp-* + /pricing,P1,"Registrar Corp (ComplyHub) + fda.gov dominate; small sites (miratag, Fiverr) rank too, so winnable on long tail"
+fsvp software,FSVP,commercial/informational,/guides/fsvp-* + /pricing,P1,"Registrar Corp (ComplyHub) + fda.gov dominate; small sites (miratag, Fiverr) rank too, so winnable on long tail"
+fsvp qualified individual,FSVP,commercial/informational,/guides/fsvp-* + /pricing,P1,"Registrar Corp (ComplyHub) + fda.gov dominate; small sites (miratag, Fiverr) rank too, so winnable on long tail"
+fsvp supplier approval,FSVP,commercial/informational,/guides/fsvp-* + /pricing,P1,"Registrar Corp (ComplyHub) + fda.gov dominate; small sites (miratag, Fiverr) rank too, so winnable on long tail"
+fsvp fda inspection,FSVP,commercial/informational,/guides/fsvp-* + /pricing,P1,"Registrar Corp (ComplyHub) + fda.gov dominate; small sites (miratag, Fiverr) rank too, so winnable on long tail"
+how to get off fda import alert,how-to / tool,commercial/transactional,/guides/* + home search + /pricing,P1,"Consultants and law firms (Certified Labs, Registrar, Diaz Trade Law) = paid intent confirmed; FDA FSER page for lookup"
+fda import alert removal petition,how-to / tool,commercial/transactional,/guides/* + home search + /pricing,P1,"Consultants and law firms (Certified Labs, Registrar, Diaz Trade Law) = paid intent confirmed; FDA FSER page for lookup"
+fda red list removal,how-to / tool,commercial/transactional,/guides/* + home search + /pricing,P1,"Consultants and law firms (Certified Labs, Registrar, Diaz Trade Law) = paid intent confirmed; FDA FSER page for lookup"
+check if supplier is on fda import alert,how-to / tool,commercial/transactional,/guides/* + home search + /pricing,P1,"Consultants and law firms (Certified Labs, Registrar, Diaz Trade Law) = paid intent confirmed; FDA FSER page for lookup"
+fda supplier compliance check,how-to / tool,commercial/transactional,/guides/* + home search + /pricing,P1,"Consultants and law firms (Certified Labs, Registrar, Diaz Trade Law) = paid intent confirmed; FDA FSER page for lookup"
+fda import alert lookup by company,how-to / tool,commercial/transactional,/guides/* + home search + /pricing,P1,"Consultants and law firms (Certified Labs, Registrar, Diaz Trade Law) = paid intent confirmed; FDA FSER page for lookup"
+fda import refusal search,how-to / tool,commercial/transactional,/guides/* + home search + /pricing,P1,"Consultants and law firms (Certified Labs, Registrar, Diaz Trade Law) = paid intent confirmed; FDA FSER page for lookup"
+fda supplier verification tool,how-to / tool,commercial/transactional,/guides/* + home search + /pricing,P1,"Consultants and law firms (Certified Labs, Registrar, Diaz Trade Law) = paid intent confirmed; FDA FSER page for lookup"
+fda supplier monitoring,how-to / tool,commercial/transactional,/guides/* + home search + /pricing,P1,"Consultants and law firms (Certified Labs, Registrar, Diaz Trade Law) = paid intent confirmed; FDA FSER page for lookup"
+import alert monitoring service,how-to / tool,commercial/transactional,/guides/* + home search + /pricing,P1,"Consultants and law firms (Certified Labs, Registrar, Diaz Trade Law) = paid intent confirmed; FDA FSER page for lookup"
+detention without physical examination meaning,how-to / tool,commercial/transactional,/guides/* + home search + /pricing,P1,"Consultants and law firms (Certified Labs, Registrar, Diaz Trade Law) = paid intent confirmed; FDA FSER page for lookup"
+fda red list vs green list,how-to / tool,commercial/transactional,/guides/* + home search + /pricing,P1,"Consultants and law firms (Certified Labs, Registrar, Diaz Trade Law) = paid intent confirmed; FDA FSER page for lookup"
+fda import refusal what to do,how-to / tool,commercial/transactional,/guides/* + home search + /pricing,P1,"Consultants and law firms (Certified Labs, Registrar, Diaz Trade Law) = paid intent confirmed; FDA FSER page for lookup"
+fda detained shipment what to do,how-to / tool,commercial/transactional,/guides/* + home search + /pricing,P1,"Consultants and law firms (Certified Labs, Registrar, Diaz Trade Law) = paid intent confirmed; FDA FSER page for lookup"
+amazon supplement supplier fda check,how-to / tool,commercial/transactional,/guides/* + home search + /pricing,P1,"Consultants and law firms (Certified Labs, Registrar, Diaz Trade Law) = paid intent confirmed; FDA FSER page for lookup"
