@@ -47,6 +47,7 @@ A1 Name ─→ A2 LLC + EIN ─→ B1–B6 Accounts (~1 hour once name is set) �
 - [ ] Search the USPTO trademark database for conflicts: <https://tmsearch.uspto.gov>
 - [ ] Check X and LinkedIn handle availability.
 - [x] **Chosen: SupplierTrail** — domain `suppliertrail.com` bought 2026-10-09
+- [x] USPTO screen 2026-10-09: **SUPPLIERTRAIL — no marks (live or dead)**. SUPPLIERTRAK (CyberMetrics) is **dead/cancelled 2017**. Note for the lawyer review: live **TRAIL** marks in class 9/35/42 (Trail Systems Oy, equipment/storage management software; Newpoint Advisors, asset/fiduciary database software). Assessed low risk (different goods and buyers, compound mark). Always write it as one word: "SupplierTrail". Consider filing class 42 after launch (~$350/class).
 
 ### A2. ⭐ ⏳ LLC + EIN + business bank account
 **Why:** the site publishes negative facts about named companies, and an LLC keeps a lawsuit away from your personal assets. Stripe and the bank also want a business identity.
@@ -176,7 +177,7 @@ A1 Name ─→ A2 LLC + EIN ─→ B1–B6 Accounts (~1 hour once name is set) �
 - [ ] **Data & Corrections Policy:** a `corrections@` address and a 48-hour response promise.
 - [ ] **FSVP disclaimer** on reports and pricing: "The importer is responsible for its own supplier evaluation."
 - [ ] ToS must include: as-is data from public FDA sources, no warranty, liability capped at fees paid, the user verifies with FDA, and governing law in a state with a strong anti-SLAPP statute (design §10, Rule 5).
-- [ ] **One-hour review by a media / First Amendment lawyer** (~$300–1,000) covering page templates, title wording, the banned-words list, the ToS and the corrections policy. **Required before launch.**
+- [ ] **One-hour review by a media / First Amendment lawyer** (also ask about the live TRAIL marks, see A1) (~$300–1,000) covering page templates, title wording, the banned-words list, the ToS and the corrections policy. **Required before launch.**
 - Termly or Iubenda can generate the ToS and Privacy Policy (~$10/mo). Write the Corrections Policy and FSVP disclaimer yourself.
 
 ### E2. ⭐ SEO + analytics
