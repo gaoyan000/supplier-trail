@@ -286,12 +286,23 @@ Other screens: home/search, import-alert page, country/industry list, watchlist 
 6. ✅ **Done 2026-10-09.** FDA's firm profile (`datadashboard.fda.gov/oii/firmprofile.htm?FEIi=<FEI>`) lists **current import alerts per FEI**. Test: FEI 3015850818 shows Import Alert 99-19, published 08/24/2022, the same name, address and date as our scraped red-list entry, confirming that exact-name match. Data is served from FDA's **internal** Qlik backend (`/internal/...`), so we **do not automate** against it. We use the profile page as the evidence for human verification (§10 Rule 1) and asked FDA whether the Data Dashboard API can expose import alerts by FEI.
 5. Talk to 5 FSVP importers (spice/seafood importers, Amazon supplement sellers via forums or LinkedIn). Ask how they check suppliers today and whether they'd pay $29/mo. → verify: 5 call notes; ≥2 say yes
 
-**Week 1: data**
-- Promote `spike/fda_clients.py` + `samples/` into `etl/`; the saved samples become parser test fixtures.
-- Backfill the full food-refusal history (5,000-row pages) and record the real distinct-FEI count. This sizes the supplier-page count in §3.
-- ETL for import alerts (scrape + diff), refusals, warning letters (`compliance_actions`), and iRES recalls. → verify: counts match the FDA Dashboard totals ±1%
-- Date validation: quarantine future and impossible dates. → verify: the known 2026-10-29 warning letter is quarantined
-- Entity build: FEI join, then exact name, then fuzzy name + country for red-list firms. → verify: ≥90% of red-list firms resolved; hand-check 50 random matches with 0 wrong links
+**Week 1: data** — ✅ pipeline built 2026-10-09 (`etl/`, 68 tests, CI workflow)
+- ✅ Spike code turned into `etl/` (`st-etl` CLI); samples are now test fixtures. Local Postgres 16; Neon + Cloudflare Hyperdrive in production.
+- ✅ Full backfill (measured):
+
+  | Source | Rows | Notes |
+  |---|---|---|
+  | Food import refusals | **235,221** lines, 2001-10 → 2026-09 | ~13K/yr recently; 100% with FEI |
+  | Food/cosmetic inspections | 192,529 | NAI 128K · VAI 59K · OAI 5.5K |
+  | Food recalls (iRES CFSAN) | 37,792 | = iRES reported total ✅ |
+  | Food/cosmetic compliance actions | 3,889 | 3,707 warning letters |
+  | Import-alert red lists (all 154 alerts) | 23,860 active entries | 16,036 on food/supplement alerts |
+
+- ✅ **Supplier-page sizing:** 123,735 firms with FEI; **66,556 indexable** (≥2 non-quarantined signals); **30,100 foreign indexable** (Mexico 3.4K, China 3.2K, India 2.3K…); 10,058 foreign firms refused in the last 5 years.
+- ✅ Date validation: 2 recalls quarantined (FDA typos: years 0013 and 0212).
+- ⚠️ Entity resolution: **82.1%** of food red-list entries have a candidate FEI firm (86.9% for entries listed since 2015; 77.3% before), below the 90% target. Of the 2,878 unresolved, 64% were listed before 2015 and only 17 share a name with a firm elsewhere, so most simply have **no record in FDA's FEI datasets**. They get red-list entry pages only (§10, Rule 1); the FEI API, if granted, is the remaining lever.
+- ⏳ **Hand-check** 50 random exact-name candidates on FDA firm profiles (0 wrong links target): `data/review_candidates.csv` (29,853 candidates, with evidence URLs).
+- Learned: FDA datasets spell countries differently ("South Korea" / "Korea (the Republic of)"), so matching compares ISO codes. FDA lists some firms twice on one alert page (merged). Concurrent jobs can deadlock, so firms are written in sorted order and the page is retried.
 
 **Week 2: SEO pages**
 - Supplier, import-alert, country and industry pages; sitemaps; JSON-LD; index rules.

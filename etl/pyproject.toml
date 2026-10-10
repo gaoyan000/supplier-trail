@@ -1,0 +1,32 @@
+[project]
+name = "supplier-trail-etl"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+  "requests>=2.32",
+  "beautifulsoup4>=4.12",
+  "lxml>=5.0",
+  "python-dotenv>=1.0",
+  "psycopg[binary]>=3.2",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+st-etl = "supplier_trail_etl.cli:main"
+
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+  "integration: needs the local Postgres test database",
+  "live: calls FDA over the network",
+]
+addopts = "-m 'not live'"

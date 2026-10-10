@@ -1,0 +1,72 @@
+[
+ {
+  "PRODUCTID": "99999",
+  "FIRMCOUNTRYNAM": "United States",
+  "RECALLINITIATIONDT": "04/09/2011",
+  "FIRMLEGALNAM": "A-1 Sandwich, Inc.",
+  "CENTERCD": "CFSAN",
+  "CENTERCLASSIFICATIONTYPETXT": "1",
+  "FIRMFEINUM": "2921164",
+  "EVENTLMD": "09/06/2018",
+  "PRODUCTDESCRIPTIONTXT": "100203\tHAM & CHEESE LETTUCE WHEAT\t \t671638002034\r\n",
+  "PRODUCTSHORTREASONTXT": "FDA investigation found numerous sandwich labels that list mayonnaise as as ingredient, but do not list egg, one of the eight major allergens.",
+  "RECALLNUM": "F-1143-2011",
+  "RID": 1
+ },
+ {
+  "PRODUCTID": "99998",
+  "FIRMCOUNTRYNAM": "United States",
+  "RECALLINITIATIONDT": "04/09/2011",
+  "FIRMLEGALNAM": "A-1 Sandwich, Inc.",
+  "CENTERCD": "CFSAN",
+  "CENTERCLASSIFICATIONTYPETXT": "1",
+  "FIRMFEINUM": "2921164",
+  "EVENTLMD": "09/06/2018",
+  "PRODUCTDESCRIPTIONTXT": "100196\tCRAB SALAD WHITE\t \t671638001969\r\n",
+  "PRODUCTSHORTREASONTXT": "FDA investigation found numerous sandwich labels that list mayonnaise as as ingredient, but do not list egg, one of the eight major allergens.",
+  "RECALLNUM": "F-1142-2011",
+  "RID": 2
+ },
+ {
+  "PRODUCTID": "99997",
+  "FIRMCOUNTRYNAM": "United States",
+  "RECALLINITIATIONDT": "04/09/2011",
+  "FIRMLEGALNAM": "A-1 Sandwich, Inc.",
+  "CENTERCD": "CFSAN",
+  "CENTERCLASSIFICATIONTYPETXT": "1",
+  "FIRMFEINUM": "2921164",
+  "EVENTLMD": "09/06/2018",
+  "PRODUCTDESCRIPTIONTXT": "100195\tTUNA & EGG WHITE\t \t671638001952\r\n",
+  "PRODUCTSHORTREASONTXT": "FDA investigation found numerous sandwich labels that list mayonnaise as as ingredient, but do not list egg, one of the eight major allergens.",
+  "RECALLNUM": "F-1141-2011",
+  "RID": 3
+ },
+ {
+  "PRODUCTID": "99996",
+  "FIRMCOUNTRYNAM": "United States",
+  "RECALLINITIATIONDT": "04/09/2011",
+  "FIRMLEGALNAM": "A-1 Sandwich, Inc.",
+  "CENTERCD": "CFSAN",
+  "CENTERCLASSIFICATIONTYPETXT": "1",
+  "FIRMFEINUM": "2921164",
+  "EVENTLMD": "09/06/2018",
+  "PRODUCTDESCRIPTIONTXT": "100189\tCHUNKY CHICKEN WHITE\t \t671638001891\r\n",
+  "PRODUCTSHORTREASONTXT": "FDA investigation found numerous sandwich labels that list mayonnaise as as ingredient, but do not list egg, one of the eight major allergens.",
+  "RECALLNUM": "F-1140-2011",
+  "RID": 4
+ },
+ {
+  "PRODUCTID": "99995",
+  "FIRMCOUNTRYNAM": "United States",
+  "RECALLINITIATIONDT": "04/09/2011",
+  "FIRMLEGALNAM": "A-1 Sandwich, Inc.",
+  "CENTERCD": "CFSAN",
+  "CENTERCLASSIFICATIONTYPETXT": "1",
+  "FIRMFEINUM": "2921164",
+  "EVENTLMD": "09/06/2018",
+  "PRODUCTDESCRIPTIONTXT": "100194\tDEVILLED EGG WHITE\t \t671638001945\r\n",
+  "PRODUCTSHORTREASONTXT": "FDA investigation found numerous sandwich labels that list mayonnaise as as ingredient, but do not list egg, one of the eight major allergens.",
+  "RECALLNUM": "F-1139-2011",
+  "RID": 5
+ }
+]

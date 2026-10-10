@@ -1,0 +1,33 @@
+name: etl-tests
+
+on:
+  push:
+    paths: ["etl/**", "db/**", ".github/workflows/etl-tests.yml"]
+  pull_request:
+    paths: ["etl/**", "db/**", ".github/workflows/etl-tests.yml"]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: st
+          POSTGRES_PASSWORD: st
+          POSTGRES_DB: suppliertrail_test
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U st" --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      TEST_DATABASE_URL: postgresql://st:st@localhost:5432/suppliertrail_test
+    defaults:
+      run:
+        working-directory: etl
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e ".[dev]"
+      - run: pytest -q
