@@ -1,0 +1,38 @@
+name: web-tests
+
+on:
+  push:
+    paths: ["web/**", "db/**", ".github/workflows/web-tests.yml"]
+  pull_request:
+    paths: ["web/**", "db/**", ".github/workflows/web-tests.yml"]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: st
+          POSTGRES_PASSWORD: st
+          POSTGRES_DB: suppliertrail_web_test
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U st" --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      TEST_DATABASE_URL: postgresql://st:st@localhost:5432/suppliertrail_web_test
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npx next typegen && npx tsc --noEmit
+      - run: npm test
+      - run: npm run build
