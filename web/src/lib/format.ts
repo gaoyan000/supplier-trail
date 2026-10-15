@@ -14,6 +14,12 @@ export function supplierTitle(name: string): string {
   return `${name} — FDA import refusal & import alert records`;
 }
 
+/** "address, city, country". FDA's address line often already names the city. */
+export function firmPlace(firm: { address: string | null; city: string | null; country: string | null }): string {
+  const city = firm.city && firm.address?.toLowerCase().includes(firm.city.toLowerCase()) ? null : firm.city;
+  return [firm.address, city, firm.country].filter(Boolean).join(", ");
+}
+
 export function parsePage(value: string | undefined): number {
   return value && /^[1-9]\d{0,5}$/.test(value) ? Number(value) : 1;
 }

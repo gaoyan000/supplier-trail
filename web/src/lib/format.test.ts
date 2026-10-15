@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { parsePage, parseSupplierId, relativeDays, supplierPath, supplierTitle } from "./format";
+import { firmPlace, parsePage, parseSupplierId, relativeDays, supplierPath, supplierTitle } from "./format";
 
 describe("parseSupplierId", () => {
   it("splits the FEI from the slug", () => {
@@ -57,5 +57,17 @@ describe("parsePage", () => {
     ["2.5", 1],
   ])("%j → %i", (value, expected) => {
     expect(parsePage(value)).toBe(expected);
+  });
+});
+
+describe("firmPlace", () => {
+  it.each([
+    [{ address: "No. 1 Sample Road", city: "Example City", country: "China" }, "No. 1 Sample Road, Example City, China"],
+    [{ address: "No. 1 Sample Road, Example City", city: "Example City", country: "China" }, "No. 1 Sample Road, Example City, China"],
+    [{ address: "Opp Gate, EXAMPLE CITY, Sample State", city: "Example City", country: "India" }, "Opp Gate, EXAMPLE CITY, Sample State, India"],
+    [{ address: null, city: "Example City", country: null }, "Example City"],
+    [{ address: null, city: null, country: null }, ""],
+  ])("%j → %j", (firm, expected) => {
+    expect(firmPlace(firm)).toBe(expected);
   });
 });

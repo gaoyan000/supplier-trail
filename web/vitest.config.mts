@@ -8,6 +8,7 @@ export default defineConfig({
   test: {
     environment: "node",
     include: ["src/**/*.test.{ts,tsx}"],
+    fileParallelism: false, // database suites share one test database
     env: loadEnv("test", process.cwd(), ""),
   },
 });

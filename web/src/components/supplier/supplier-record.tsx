@@ -3,7 +3,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 
 import { EVENT_FILTERS, eventView, type EventRow, type FilterKey } from "@/lib/events";
-import { relativeDays, supplierPath } from "@/lib/format";
+import { firmPlace, relativeDays, supplierPath } from "@/lib/format";
 import { PAGE_SIZE, type Firm, type SupplierSummary } from "@/lib/suppliers";
 
 type Props = {
@@ -128,9 +128,7 @@ function RefusalsByYear({ years }: { years: SupplierSummary["refusalsByYear"] })
 }
 
 export function SupplierRecord({ firm, summary, events, filter, page, asOf, today }: Props) {
-  // FDA's address line often already ends with the city.
-  const city = firm.city && firm.address?.toLowerCase().endsWith(firm.city.toLowerCase()) ? null : firm.city;
-  const place = [firm.address, city, firm.country].filter(Boolean).join(", ");
+  const place = firmPlace(firm);
   const total = summary.counts[filter];
   const pageCount = Math.max(1, Math.ceil(total / PAGE_SIZE));
   const first = (page - 1) * PAGE_SIZE + 1;
