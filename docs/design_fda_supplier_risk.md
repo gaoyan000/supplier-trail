@@ -92,7 +92,7 @@ Verified by `spike/` (17/18 tests pass; run `cd spike && .venv/bin/pytest`). Rea
 | openFDA food enforcement | **Dropped** | The same recall data as iRES but **without FEI** |
 | fda.gov warning-letters page scrape | **Dropped** | Replaced by Data Dashboard `compliance_actions`, which has FEI |
 | Import Refusal Report bulk download | **Dropped** | Replaced by the Data Dashboard API (same data, queryable) |
-| **FEI Portal API** (`rest/feiapi`) | **Blocked**: 401 | The account has FEI *Portal* (website) access but no API key. Requested by email to `OIIWebApplicationTechTeam@fda.hhs.gov`. Not on the critical path. |
+| **FEI Portal API** (`rest/feiapi`) | ✅ **Works (tested 2026-10-16)** | Key granted 2026-10-15. Name + address → FEI was right on every test (see §2 *Entity resolution*). Becomes the main red-list resolver and verifier. |
 
 ### API mechanics learned (for the ETL)
 
@@ -100,6 +100,12 @@ Verified by `spike/` (17/18 tests pass; run `cd spike && .venv/bin/pytest`). Rea
 - **accessdata APIs (iRES, PCB):** responses are cached per URL, so every call needs a unique `?signature=`. iRES dates are `MM/DD/YYYY` strings and sort as text, so sort by `productid` instead.
 - **Data quality:** FDA data contains bad dates (e.g. a warning letter dated 3 weeks in the future). The ETL must reject or quarantine future and impossible dates.
 - **Rate:** all calls answered in under 2 s; no throttling seen at spike volume. Still use polite pacing in production (≤ 2 req/s).
+- **FEI API** (docs: `accessdata.fda.gov/scripts/feiportal/apidocs/`): `GET /rest/feiapi/firmdata/feinumber/{fei}` returns legal name, physical and mailing address, `VALIDATIONSTATUS` and `MERGEDFIRMINDICATOR`. `POST /rest/feiapi/firmdata/feidata` with form field `payLoad` = JSON `{firmname, firmaddress1, firmcity, firmcountry (ISO-2), firmstate (US only), …}` looks up the FEI from a name + address. Same conventions as the other accessdata APIs: `Authorization-User/Key` headers, a unique `?signature=`, and the real status in the body (`400` success, `412` no results, `413` service unavailable, **`430` hourly search limit: wait an hour**). The hourly limit is not published. A merged firm comes back under its current name, so a returned name can differ from FDA's red-list name.
+- **Availability (2026-10-15; recovered 2026-10-16, 20 calls at 1 per 10 s, no blocking):** the FEI API answered `413 Service is unavailable` and empty bodies. At the same time `www.accessdata.fda.gov` redirected this connection to FDA's *abuse-detection* page and `datadashboard.fda.gov` returned 403, while a phone on cellular got a blank page from `accessdata.fda.gov`. That points mainly to an FDA-side outage, with our connection possibly also flagged. 15 FEI calls at 1/s were made that day; the API never returned its own `430` limit. Rules for every FDA job:
+  - **A failed or blocked run is not "no new records".** Record the run as failed, change nothing, and catch up on the next run (incremental jobs already resume from the last-seen date).
+  - **Stop on a block.** If FDA returns its apology/abuse-detection page, a 403, or `413`/`430`, stop all FDA calls for that job and retry hours later. Never retry in a loop.
+  - **FEI API pacing:** one call every 10 s at most, a local cache so each red-list entry is looked up once, and at most a few hundred calls a day until FDA's limit is known.
+  - **Pages keep serving** the last good data, and the 72 h "data may be out of date" banner (§10 Rule 3) covers a long outage.
 
 ### Entity resolution (the moat), as measured
 
@@ -109,10 +115,28 @@ FEI-keyed sources (refusals, inspections, warning letters, recalls)
 Red-list firms (name + address only)
         ├─ step 1: exact name match → refusal records ....... 24/30 resolved (80%), 0 ambiguous
         ├─ step 2: normalized name + country fuzzy match .... (to build; target ≥90% total)
-        ├─ step 3: FEI API lookup by name + address ......... (once key granted)
+        ├─ step 3: FEI API lookup by name + address ......... ✅ tested 2026-10-16: 18/18 found, see below
         ├─ step 4: human check on FDA's firm profile ......... evidence for `verified` (§10); confirmed 2026-10-09
         └─ unresolved → firm page without FEI, slug = name-country, noindex until resolved
 ```
+
+**FEI API test (2026-10-16, 20 calls).** Payload built from FDA's red-list name and address (split on commas: street, city, province + ISO country):
+
+| Test | Result |
+|---|---|
+| Entry hand-verified on FDA's firm profile (99-19, FEI 3015850818) | ✅ returns 3015850818 |
+| 8 rows of `data/review_sample_50.csv` (single exact-name candidate) | **8/8 agree** with our candidate |
+| 5 food red-list entries with **no** candidate | **5/5 found an FEI**, none of them in our database (these firms have no refusal, inspection, recall or warning-letter record) |
+| 3 entries with **only fuzzy** candidates | API found an FEI for 3/3, and it was **different from our fuzzy candidate every time** |
+| Negative controls: a made-up firm; a real firm sent with the wrong country | both `412 No results found` (the API does not return a closest guess) |
+
+What changes:
+- **The FEI API becomes step 1 for red-list entries**, ahead of name matching. §10 Rule 1 already accepts "the FEI API returns that FEI for FDA's name + address" as verification, so its links can be `verified` (method `fei_api`) and published without a manual check.
+- **Fuzzy name matches are dropped as candidates.** They were wrong in 3/3 tested; they were never public, and now they are not needed.
+- **Coverage should rise well above the 82.1%**, because unmatched entries resolve to FEIs we had never seen. Those FEIs become new `firms` rows (name and address from `GET /feinumber/{fei}`), whose page shows the red-list listing.
+- **Human review shrinks** to a spot check of API links (e.g. 20 random ones on FDA's firm profile) plus any entry where the API and an exact-name candidate disagree.
+- **Volume:** about 16,000 food red-list entries. At 1 call per 10 s that is about 45 hours, so the backfill runs in nightly batches with the stop rules above, results cached per entry. The daily job then only looks up new entries (a handful a day).
+- **Before relying on it at scale:** rerun the comparison on a larger sample (about 200 entries) during the first backfill batch, and stop if agreement with exact-name candidates falls below ~98%.
 
 Each name-based link stores `match_method` and `match_confidence`. **Publishing a link is governed by the verified-link rule in §10.** The match rate above is for internal use; it is *not* the public publish rate.
 
@@ -301,6 +325,7 @@ Other screens: home/search, import-alert page, country/industry list, watchlist 
 - ✅ **Supplier-page sizing:** 123,735 firms with FEI; **66,556 indexable** (≥2 non-quarantined signals); **30,100 foreign indexable** (Mexico 3.4K, China 3.2K, India 2.3K…); 10,058 foreign firms refused in the last 5 years.
 - ✅ Date validation: 2 recalls quarantined (FDA typos: years 0013 and 0212).
 - ⚠️ Entity resolution: **82.1%** of food red-list entries have a candidate FEI firm (86.9% for entries listed since 2015; 77.3% before), below the 90% target. Of the 2,878 unresolved, 64% were listed before 2015 and only 17 share a name with a firm elsewhere, so most simply have **no record in FDA's FEI datasets**. They get red-list entry pages only (§10, Rule 1); the FEI API, if granted, is the remaining lever.
+- ✅ **FEI API test, 2026-10-16:** hand-verified entry returned, 8/8 agreement with exact-name candidates, 5/5 unmatched entries resolved, fuzzy candidates wrong in 3/3, negative controls return no result (details in §2). Next: FEI API resolver in `etl/` (step 1 for red-list entries, nightly batches at 1 call per 10 s).
 - ⏳ **Hand-check** 50 random exact-name candidates on FDA firm profiles (0 wrong links target): `data/review_candidates.csv` (29,853 candidates, with evidence URLs).
 - Learned: FDA datasets spell countries differently ("South Korea" / "Korea (the Republic of)"), so matching compares ISO codes. FDA lists some firms twice on one alert page (merged). Concurrent jobs can deadlock, so firms are written in sorted order and the page is retried.
 
@@ -329,7 +354,8 @@ Go/no-go at week 10: ≥2K impressions/week **and** ≥1 paying user, or pivot (
 | Import alert HTML changes and the scraper breaks | Raw snapshots + parser tests on saved fixtures + alert if the row count drops >20% |
 | FDA data errors (e.g. future-dated records) show up as false alerts | Date validation; `quarantined` events never reach pages or emails |
 | FDA API access is revoked, rate-limited or changes shape | Keys are per-account and free; raw snapshots in R2 let pages keep serving; the spike test suite runs nightly as a canary |
-| FEI API key never granted | Not needed: exact + fuzzy name matching covers ≥80%; unresolved red-list firms get `noindex` pages |
+| FDA site outage or bot-blocking (seen 2026-10-15) | A failed run changes nothing and the next run catches up; stop on a block page, 403, `413` or `430` instead of retrying; pages serve the last good data with the 72 h staleness banner (§2 *Availability*) |
+| FEI API turns out unreliable or too limited at scale | Fall back: exact + fuzzy name matching covers ≥80%; unresolved red-list firms get `noindex` pages |
 | Recall data is mostly US firms, so weak for foreign-supplier pages | Treat recalls as secondary; refusals + red lists are the primary signal for foreign suppliers |
 | Low willingness to pay | The $19 report and lead-gen are non-subscription revenue to test early |
 | Report mistaken for legal compliance advice | Report states facts plus sources only; disclaimer that the FSVP evaluation is the importer's responsibility; no "approved" wording |
