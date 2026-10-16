@@ -4,6 +4,9 @@
   st-etl sync refusals|compliance|inspections|recalls [--full] [--max-pages N]
   st-etl sync red-lists [--only 99-19 ...]
   st-etl resolve
+  st-etl fei-lookup --limit N     ask FDA's FEI API (1 call / 10 s), stops on any FDA block
+  st-etl fei-report               agreement of FEI API answers with exact-name matches
+  st-etl fei-apply                publish found FEIs as verified links
   st-etl stats
   st-etl review-export out.csv
 """
@@ -17,12 +20,11 @@ from datetime import date
 from .config import load_settings, require
 from .db import MIGRATIONS_DIR, connect, migrate, refresh_firm_aggregates
 from .fda.apis import DashboardClient, IresClient
+from .fda.fei_api import FdaBlockedError, FeiApiClient
 from .fda.http import FdaHttp
+from .fei_resolve import FIRM_PROFILE_URL, AgreementTooLowError, agreement, apply_lookups, lookup_entries
 from .pipeline import DASHBOARD_JOBS, sync_dashboard, sync_recalls, sync_red_lists
 from .resolve import resolve_red_list
-
-PROFILE_URL = "https://datadashboard.fda.gov/oii/firmprofile.htm?FEIi={fei}"
-
 
 def _stats(conn) -> dict:
     q = {
@@ -34,6 +36,7 @@ def _stats(conn) -> dict:
         "red_list_active_entries": "select count(*) from red_list_entries where active",
         "red_list_verified_links": "select count(*) from red_list_entries where firm_id is not null",
         "red_list_with_candidate": "select count(distinct entry_id) from red_list_candidates",
+        "fei_api_lookups": "select count(*) from fei_api_lookups",
     }
     out = {}
     with conn.cursor() as cur:
@@ -42,6 +45,8 @@ def _stats(conn) -> dict:
             out[k] = cur.fetchone()[0]
         cur.execute("select type, count(*) from events group by type order by 2 desc")
         out["events_by_type"] = dict(cur.fetchall())
+        cur.execute("select status, count(*) from fei_api_lookups group by 1 order by 2 desc")
+        out["fei_api_by_status"] = dict(cur.fetchall())
         cur.execute("select coalesce(country,'?'), count(*) from firms where indexable group by 1 order by 2 desc limit 10")
         out["top_countries_indexable"] = dict(cur.fetchall())
     return out
@@ -66,8 +71,22 @@ def _review_export(conn, path: str) -> int:
         w.writerow(["entry_id", "alert", "fda_name", "fda_address", "country", "firm_id", "fei", "firm_name",
                     "firm_address", "method", "confidence", "evidence_url", "decision(verified/rejected)"])
         for r in rows:
-            w.writerow([*r, PROFILE_URL.format(fei=r[6]), ""])
+            w.writerow([*r, FIRM_PROFILE_URL.format(fei=r[6]), ""])
     return len(rows)
+
+
+def _fei_lookup(conn, settings, limit: int) -> int:
+    http = FdaHttp(interval_s=settings.fei_interval_s, raw_dir=settings.raw_dir)
+    client = FeiApiClient(http, user=require(settings.fda_user, "FDA_DASHBOARD_USER"),
+                          key=require(settings.fei_key, "FEI_PORTAL_KEY"))
+    try:
+        result = lookup_entries(conn, client, limit=limit, archive=http.archive)
+    except FdaBlockedError as exc:
+        # Design §2 Availability: stop all FDA calls; results so far are stored. Retry hours later.
+        print(f"stopped, FDA refused service: {exc}", file=sys.stderr)
+        return 2
+    print(json.dumps(result, indent=2))
+    return 0
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -82,6 +101,10 @@ def main(argv: list[str] | None = None) -> int:
     s.add_argument("--only", nargs="*", help="red-lists: only these alert numbers")
     sub.add_parser("resolve")
     sub.add_parser("stats")
+    f = sub.add_parser("fei-lookup")
+    f.add_argument("--limit", type=int, required=True, help="entries to look up in this run")
+    sub.add_parser("fei-report")
+    sub.add_parser("fei-apply")
     r = sub.add_parser("review-export")
     r.add_argument("path")
     args = parser.parse_args(argv)
@@ -105,6 +128,22 @@ def main(argv: list[str] | None = None) -> int:
         if args.cmd == "review-export":
             print(f"wrote {_review_export(conn, args.path)} candidates to {args.path}")
             return 0
+
+        if args.cmd == "fei-report":
+            print(json.dumps(agreement(conn), indent=2))
+            return 0
+        if args.cmd == "fei-apply":
+            try:
+                result = apply_lookups(conn, today=today)
+            except AgreementTooLowError as exc:
+                print(f"not applied: {exc}", file=sys.stderr)
+                return 3
+            refresh_firm_aggregates(conn, today=today)
+            conn.commit()
+            print(json.dumps(result, indent=2))
+            return 0
+        if args.cmd == "fei-lookup":
+            return _fei_lookup(conn, settings, args.limit)
 
         http = FdaHttp(interval_s=settings.request_interval_s, raw_dir=settings.raw_dir)
         user = require(settings.fda_user, "FDA_DASHBOARD_USER")

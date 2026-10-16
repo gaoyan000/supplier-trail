@@ -17,8 +17,10 @@ class Settings:
     dashboard_key: str
     ires_key: str
     pcb_key: str
+    fei_key: str
     raw_dir: Path
     request_interval_s: float = 0.5  # ≤ 2 requests/second to FDA (design §2)
+    fei_interval_s: float = 80.0     # FEI API: FDA allows ~50 searches/hour (430 after ~50, 2026-10-16)
 
 
 def load_settings() -> Settings:
@@ -30,6 +32,7 @@ def load_settings() -> Settings:
         dashboard_key=os.environ.get("FDA_DASHBOARD_KEY", ""),
         ires_key=os.environ.get("ENFORCEMENT_REPORTS_KEY", ""),
         pcb_key=os.environ.get("PCB_API_KEY", ""),
+        fei_key=os.environ.get("FEI_PORTAL_KEY", ""),
         raw_dir=raw_dir if raw_dir.is_absolute() else (ETL_ROOT / raw_dir).resolve(),
     )
 
